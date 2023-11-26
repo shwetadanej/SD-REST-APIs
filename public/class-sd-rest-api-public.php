@@ -107,14 +107,27 @@ class Sd_Rest_Api_Public
 	 * @return void
 	 */
 	public function sd_register_custom_post_type(){
+		$labels = array(
+			'name'                  => _x( 'Events', 'Post type general name', 'sd-rest-api' ),
+			'singular_name'         => _x( 'Event', 'Post type singular name', 'sd-rest-api' ),
+			'menu_name'             => _x( 'Events', 'Admin Menu text', 'sd-rest-api' ),
+			'name_admin_bar'        => _x( 'Event', 'Add New on Toolbar', 'sd-rest-api' ),
+			'add_new'               => __( 'Add New', 'sd-rest-api' ),
+			'add_new_item'          => __( 'Add New event', 'sd-rest-api' ),
+			'new_item'              => __( 'New event', 'sd-rest-api' ),
+			'edit_item'             => __( 'Edit event', 'sd-rest-api' ),
+			'view_item'             => __( 'View event', 'sd-rest-api' ),
+			'all_items'             => __( 'All recipes', 'sd-rest-api' ),
+			'search_items'          => __( 'Search recipes', 'sd-rest-api' ),
+			'parent_item_colon'     => __( 'Parent recipes:', 'sd-rest-api' ),
+			'not_found'             => __( 'No recipes found.', 'sd-rest-api' ),
+			'not_found_in_trash'    => __( 'No recipes found in Trash.', 'sd-rest-api' )
+		); 
 		register_post_type('event', array(
-			'labels' => array(
-				'name' => __('Events'),
-				'singular_name' => __('Event'),
-			),
+			'labels' => $labels,
 			'public' => true,
 			'has_archive' => true,
-			'supports' => array('title', 'editor', 'custom-fields'),
+			'supports' => array('title', 'editor', 'custom-fields', 'author'),
 		));
 	}
 
