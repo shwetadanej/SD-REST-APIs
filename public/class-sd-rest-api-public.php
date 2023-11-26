@@ -221,8 +221,8 @@ class Sd_Rest_Api_Public
 	
 		$new_event_id = wp_insert_post(array(
 			'post_type' => 'event',
-			'post_title' => sanitize_text_field($data['description']),
-			'post_content' => sanitize_text_field($data['title']),
+			'post_title' => sanitize_text_field($data['title']),
+			'post_content' => sanitize_text_field($data['description']),
 			'post_status' => 'publish',
 			'meta_input' => array(
 				'event_date' => sanitize_text_field($data['date']),
@@ -256,9 +256,9 @@ class Sd_Rest_Api_Public
 	
 		$event = get_post($event_id);
 		$title = sanitize_text_field($data['title']);
-		$description = sanitize_text_field($data['title']);
-		$date = sanitize_text_field($data['title']);
-		$location = sanitize_text_field($data['title']);
+		$description = sanitize_text_field($data['description']);
+		$date = sanitize_text_field($data['date']);
+		$location = sanitize_text_field($data['location']);
 		$updated_event_id = wp_update_post(array(
 			'ID' => $event_id,
 			'post_title' => $title ? $title : $event->post_title,
