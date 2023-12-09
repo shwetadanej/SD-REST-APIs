@@ -120,8 +120,8 @@ class Sd_Rest_Api_Public
 			'all_items'             => __( 'All events', 'sd-rest-api' ),
 			'search_items'          => __( 'Search events', 'sd-rest-api' ),
 			'parent_item_colon'     => __( 'Parent events:', 'sd-rest-api' ),
-			'not_found'             => __( 'No recipes found.', 'sd-rest-api' ),
-			'not_found_in_trash'    => __( 'No recipes found in Trash.', 'sd-rest-api' )
+			'not_found'             => __( 'No events found.', 'sd-rest-api' ),
+			'not_found_in_trash'    => __( 'No events found in Trash.', 'sd-rest-api' )
 		); 
 		register_post_type('event', array(
 			'labels' => $labels,
