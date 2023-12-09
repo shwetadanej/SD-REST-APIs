@@ -117,9 +117,9 @@ class Sd_Rest_Api_Public
 			'new_item'              => __( 'New event', 'sd-rest-api' ),
 			'edit_item'             => __( 'Edit event', 'sd-rest-api' ),
 			'view_item'             => __( 'View event', 'sd-rest-api' ),
-			'all_items'             => __( 'All recipes', 'sd-rest-api' ),
-			'search_items'          => __( 'Search recipes', 'sd-rest-api' ),
-			'parent_item_colon'     => __( 'Parent recipes:', 'sd-rest-api' ),
+			'all_items'             => __( 'All events', 'sd-rest-api' ),
+			'search_items'          => __( 'Search events', 'sd-rest-api' ),
+			'parent_item_colon'     => __( 'Parent events:', 'sd-rest-api' ),
 			'not_found'             => __( 'No recipes found.', 'sd-rest-api' ),
 			'not_found_in_trash'    => __( 'No recipes found in Trash.', 'sd-rest-api' )
 		); 
