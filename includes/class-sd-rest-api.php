@@ -78,7 +78,6 @@ class Sd_Rest_Api {
 		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
-
 	}
 
 	/**
@@ -87,7 +86,7 @@ class Sd_Rest_Api {
 	 * Include the following files that make up the plugin:
 	 *
 	 * - Sd_Rest_Api_Loader. Orchestrates the hooks of the plugin.
-	 * - Sd_Rest_Api_i18n. Defines internationalization functionality.
+	 * - Sd_Rest_Api_I18n. Defines internationalization functionality.
 	 * - Sd_Rest_Api_Admin. Defines all hooks for the admin area.
 	 * - Sd_Rest_Api_Public. Defines all hooks for the public side of the site.
 	 *
@@ -103,33 +102,32 @@ class Sd_Rest_Api {
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-sd-rest-api-loader.php';
+		require_once plugin_dir_path( __DIR__ ) . 'includes/class-sd-rest-api-loader.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-sd-rest-api-i18n.php';
+		require_once plugin_dir_path( __DIR__ ) . 'includes/class-sd-rest-api-i18n.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-sd-rest-api-admin.php';
+		require_once plugin_dir_path( __DIR__ ) . 'admin/class-sd-rest-api-admin.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-sd-rest-api-public.php';
+		require_once plugin_dir_path( __DIR__ ) . 'public/class-sd-rest-api-public.php';
 
 		$this->loader = new Sd_Rest_Api_Loader();
-
 	}
 
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the Sd_Rest_Api_i18n class in order to set the domain and to register the hook
+	 * Uses the Sd_Rest_Api_I18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
 	 * @since    1.0.0
@@ -137,10 +135,9 @@ class Sd_Rest_Api {
 	 */
 	private function set_locale() {
 
-		$plugin_i18n = new Sd_Rest_Api_i18n();
+		$plugin_i18n = new Sd_Rest_Api_I18n();
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
-
 	}
 
 	/**
@@ -156,7 +153,6 @@ class Sd_Rest_Api {
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
-
 	}
 
 	/**
@@ -174,7 +170,6 @@ class Sd_Rest_Api {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 		$this->loader->add_action( 'init', $plugin_public, 'sd_register_custom_post_type' );
 		$this->loader->add_action( 'rest_api_init', $plugin_public, 'sd_register_cpt_rest_api_endpoints' );
-
 	}
 
 	/**
@@ -216,5 +211,4 @@ class Sd_Rest_Api {
 	public function get_version() {
 		return $this->version;
 	}
-
 }

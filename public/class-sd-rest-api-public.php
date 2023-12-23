@@ -20,8 +20,8 @@
  * @subpackage Sd_Rest_Api/public
  * @author     Shweta Danej <shwetadanej@gmail.com>
  */
-class Sd_Rest_Api_Public
-{
+class Sd_Rest_Api_Public {
+
 
 	/**
 	 * The ID of this plugin.
@@ -48,8 +48,7 @@ class Sd_Rest_Api_Public
 	 * @param      string    $plugin_name       The name of the plugin.
 	 * @param      string    $version    The version of this plugin.
 	 */
-	public function __construct($plugin_name, $version)
-	{
+	public function __construct( $plugin_name, $version ) {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
@@ -60,8 +59,7 @@ class Sd_Rest_Api_Public
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_styles()
-	{
+	public function enqueue_styles() {
 
 		/**
 		 * This function is provided for demonstration purposes only.
@@ -83,8 +81,7 @@ class Sd_Rest_Api_Public
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_scripts()
-	{
+	public function enqueue_scripts() {
 
 		/**
 		 * This function is provided for demonstration purposes only.
@@ -98,7 +95,7 @@ class Sd_Rest_Api_Public
 		 * class.
 		 */
 
-		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/sd-rest-api-public.js', array('jquery'), $this->version, false);
+		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/sd-rest-api-public.js', array( 'jquery' ), $this->version, false);
 	}
 
 	/**
@@ -106,7 +103,7 @@ class Sd_Rest_Api_Public
 	 *
 	 * @return void
 	 */
-	public function sd_register_custom_post_type(){
+	public function sd_register_custom_post_type() {
 		$labels = array(
 			'name'                  => _x( 'Events', 'Post type general name', 'sd-rest-api' ),
 			'singular_name'         => _x( 'Event', 'Post type singular name', 'sd-rest-api' ),
@@ -127,7 +124,7 @@ class Sd_Rest_Api_Public
 			'labels' => $labels,
 			'public' => true,
 			'has_archive' => true,
-			'supports' => array('title', 'editor', 'custom-fields', 'author'),
+			'supports' => array( 'title', 'editor', 'custom-fields', 'author' ),
 		));
 	}
 
@@ -136,34 +133,33 @@ class Sd_Rest_Api_Public
 	 *
 	 * @return void
 	 */
-	public function sd_register_cpt_rest_api_endpoints()
-	{
+	public function sd_register_cpt_rest_api_endpoints() {
 		register_rest_route('demo/v1', '/events', array(
 			'methods' => 'GET',
-			'callback' => array($this, 'get_events'),
+			'callback' => array( $this, 'get_events' ),
 		));
 	
 		register_rest_route('demo/v1', '/events/(?P<id>\d+)', array(
 			'methods' => 'GET',
-			'callback' => array($this, 'get_event'),
+			'callback' => array( $this, 'get_event' ),
 		));
 	
 		register_rest_route('demo/v1', '/events', array(
 			'methods' => 'POST',
-			'callback' => array($this, 'create_event'),
-			'permission_callback' => array($this, 'is_user_permitted'),
+			'callback' => array( $this, 'create_event' ),
+			'permission_callback' => array( $this, 'is_user_permitted' ),
 		));
 	
 		register_rest_route('demo/v1', '/events/(?P<id>\d+)', array(
 			'methods' => 'PUT',
-			'callback' => array($this, 'update_event'),
-			'permission_callback' => array($this, 'is_user_permitted'),
+			'callback' => array( $this, 'update_event' ),
+			'permission_callback' => array( $this, 'is_user_permitted' ),
 		));
 	
 		register_rest_route('demo/v1', '/events/(?P<id>\d+)', array(
 			'methods' => 'DELETE',
-			'callback' => array($this, 'delete_event'),
-			'permission_callback' => array($this, 'is_user_permitted'),
+			'callback' => array( $this, 'delete_event' ),
+			'permission_callback' => array( $this, 'is_user_permitted' ),
 		));
 	}
 
@@ -195,11 +191,11 @@ class Sd_Rest_Api_Public
 	 * @param array $data
 	 * @return object
 	 */
-	public function get_event($data) {
+	public function get_event( $data ) {
 		$event = get_post($data['id']);
 	
 		if (!$event || $event->post_type !== 'event') {
-			return new WP_Error('event_not_found', 'Event not found', array('status' => 404));
+			return new WP_Error('event_not_found', 'Event not found', array( 'status' => 404 ));
 		}
 	
 		$formatted_event = $this->format_event_response($event);
@@ -213,10 +209,10 @@ class Sd_Rest_Api_Public
 	 * @param array $data
 	 * @return object
 	 */
-	public function create_event($data) {
+	public function create_event( $data ) {
 		$user = wp_get_current_user();
 		if (!user_can($user, 'edit_posts')) {
-			return new WP_Error('permission_error', 'Permission denied', array('status' => 403));
+			return new WP_Error('permission_error', 'Permission denied', array( 'status' => 403 ));
 		}
 	
 		$new_event_id = wp_insert_post(array(
@@ -246,12 +242,12 @@ class Sd_Rest_Api_Public
 	 * @param array $data
 	 * @return object
 	 */
-	public function update_event($data) {
+	public function update_event( $data ) {
 		$user = wp_get_current_user();
 		$event_id = $data['id'];
 	
 		if (!user_can($user, 'edit_posts') || !current_user_can('edit_post', $event_id)) {
-			return new WP_Error('permission_error', 'Permission denied', array('status' => 403));
+			return new WP_Error('permission_error', 'Permission denied', array( 'status' => 403 ));
 		}
 	
 		$event = get_post($event_id);
@@ -286,21 +282,21 @@ class Sd_Rest_Api_Public
 	 * @param array $data
 	 * @return object
 	 */
-	public function delete_event($data) {
+	public function delete_event( $data ) {
 		$user = wp_get_current_user();
 		$event_id = $data['id'];
 	
 		if (!user_can($user, 'edit_posts') || !current_user_can('delete_post', $event_id)) {
-			return new WP_Error('permission_error', 'Permission denied', array('status' => 403));
+			return new WP_Error('permission_error', 'Permission denied', array( 'status' => 403 ));
 		}
 	
 		$result = wp_delete_post($event_id, true);
 	
 		if ($result === false) {
-			return new WP_Error('delete_error', 'Error deleting event', array('status' => 500));
+			return new WP_Error('delete_error', 'Error deleting event', array( 'status' => 500 ));
 		}
 	
-		return rest_ensure_response(array('success' => true));
+		return rest_ensure_response(array( 'success' => true ));
 	}
 	
 	/**
@@ -309,7 +305,7 @@ class Sd_Rest_Api_Public
 	 * @param object $event
 	 * @return array
 	 */
-	public function format_event_response($event) {
+	public function format_event_response( $event ) {
 		return array(
 			'id' => $event->ID,
 			'title' => $event->post_title,
@@ -327,5 +323,4 @@ class Sd_Rest_Api_Public
 	public function is_user_permitted() {
 		return current_user_can('edit_posts');
 	}
-
 }

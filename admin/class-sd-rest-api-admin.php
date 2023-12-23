@@ -51,7 +51,6 @@ class Sd_Rest_Api_Admin {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
-
 	}
 
 	/**
@@ -74,7 +73,6 @@ class Sd_Rest_Api_Admin {
 		 */
 
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/sd-rest-api-admin.css', array(), $this->version, 'all' );
-
 	}
 
 	/**
@@ -97,7 +95,5 @@ class Sd_Rest_Api_Admin {
 		 */
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/sd-rest-api-admin.js', array( 'jquery' ), $this->version, false );
-
 	}
-
 }

@@ -24,7 +24,7 @@
  * @subpackage Sd_Rest_Api/includes
  * @author     Shweta Danej <shwetadanej@gmail.com>
  */
-class Sd_Rest_Api_i18n {
+class Sd_Rest_Api_I18n {
 
 
 	/**
@@ -39,9 +39,5 @@ class Sd_Rest_Api_i18n {
 			false,
 			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
 		);
-
 	}
-
-
-
 }
