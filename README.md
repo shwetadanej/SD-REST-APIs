@@ -103,3 +103,12 @@ URL: https://demo.shwetadanej.com/wp-json/demo/v1/events/55
 ### Credits
 
 [JWT Authentication for WP REST API](https://wordpress.org/plugins/jwt-authentication-for-wp-rest-api) plugin has been used to get JWT access token.
+
+### Coding Standards
+
+- Library Used: [WordPress Coding Standard](https://github.com/WordPress/WordPress-Coding-Standards)
+- Coding Standard: Php Code Sniffer
+
+### Demo
+
+Login into the [Demo website](https://demo.shwetadanej.com/wp-admin/) using username "demo" and password "demo" to see the working example.
